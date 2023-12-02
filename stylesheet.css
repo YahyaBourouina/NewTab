@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Sometype Mono';
+    src: url('SometypeMono-SemiBold.eot');
+    src: url('SometypeMono-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('SometypeMono-SemiBold.woff2') format('woff2'),
+        url('SometypeMono-SemiBold.woff') format('woff'),
+        url('SometypeMono-SemiBold.ttf') format('truetype'),
+        url('SometypeMono-SemiBold.svg#SometypeMono-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+

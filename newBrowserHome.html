@@ -1,0 +1,1254 @@
+<html>
+<head>
+	<title>New tab</title>
+	<link rel="icon" type="image/x-icon" href="homy.png">
+	<link rel="preload" href="SometypeMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+	<style>
+
+
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	transition: 0.5s all ease;
+}
+
+::selection {
+	background: rgba(255, 255, 255, .3);
+}
+
+.bgv {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	min-width: 100%; 
+	min-height: 100%;
+	z-index: -11000;
+}
+
+header {
+	position: fixed;
+	border: 1px solid transparent;
+	margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 600px;
+	height: 300px;
+	text-align: center;
+}
+header .welcome {
+	color: white;
+	text-align: center;
+	font-size: 155px;
+	text-shadow: 0 0 5px #FFF, 0 0 15px #FFF, 2px 2px 2px rgba(62,121,206,0.19);
+	animation: fadeIn 1s linear forwards, bgSh 10s linear infinite;
+	font-family: 'Sometype Mono';
+    font-weight: 600;
+    font-style: normal;
+	line-height: 120px;
+}
+header .welcomeBack {
+	color: white;
+	text-align: center;
+	font-size: 25px;
+	text-shadow: 0 0 5px #FFF, 0 0 15px #FFF, 2px 2px 2px rgba(62,121,206,0.19);
+	animation: fadeIn 1s 1s linear forwards, bgSh 10s linear infinite;
+	font-family: 'Sometype Mono';
+    font-weight: 600;
+    font-style: normal;
+	margin-top: 10px;
+	opacity: 0;
+}
+
+header .serch {
+	position: absolute;
+	bottom: 50px;
+	width: 410px;
+	padding: 6px;
+	font-size: 25px;
+	transform: translate(-50%, 0%);
+	background: transparent;
+	border: 2px solid rgba(255,255,255, 0);
+	border-bottom: 2px solid rgba(255,255,255,.7);
+	outline: none;
+	color: white;
+}
+
+header .serch::placeholder {
+    position: absolute;
+	color: rgba(255,255,255,.4);
+	bottom: 5px;
+	left: 0px;
+	transition: 0.5s all ease;
+}
+.serch:hover::placeholder {
+	bottom: 15px;
+}
+.serch:focus::placeholder {
+	bottom: 15px;
+	left: 410px;
+}
+
+header .serch:focus {
+	border-bottom: 2px solid rgba(255,255,255,1);
+}
+
+header .GoSearch {
+	position: absolute;
+	bottom: 50px;
+	width: 30px;
+	height: 30px;
+	padding: 6px;
+	font-size: 25px;
+	transform: translate(-50%, 0%);
+	background: transparent;
+	outline: none;
+	color: white;
+	font-family: 'Sometype Mono';
+    font-weight: 600;
+    font-style: normal;
+	line-height: 15px;
+	right: 80px;
+	opacity: 0;
+	display: none;
+	cursor: pointer;
+}
+header .GoSearch:hover {
+	right: 70px;
+}
+
+@keyframes fadeIn {
+	0% {
+		margin-top: 10px;
+		opacity: 0;
+	}
+	100% {
+		margin-top: 0px;
+		opacity: 1;
+	}
+}
+@keyframes bgSh {
+	0% {
+		text-shadow: 0 0 5px #FFF, 0 0 15px #FFF, 2px 2px 2px rgba(62,121,206,0.19);
+	}
+	25% {
+		text-shadow: 12px -5px 15px #FFF, -10px -3px 15px #FFF, 2px 2px 2px rgba(62,121,206,0.19);
+	}
+	50% {
+		text-shadow: 18px -10px 25px rgba(255,255,255,0.19), -20px -8px 15px rgba(255,255,255,0.19), 2px 2px 2px rgba(62,121,206,0.19);
+	}
+	100% {
+		text-shadow: 0 0 5px #FFF, 0 0 15px #FFF, 2px 2px 2px rgba(62,121,206,0.19);
+	}
+}
+
+
+footer {
+	position: fixed;
+	bottom: 0;
+	text-align: center;
+	color: white;
+	width: 100%;
+	padding-bottom: 12px;
+	font-family: 'Sometype Mono';
+}
+
+.docker {
+	position: fixed;
+	top: 700px;
+	left: 0;
+	right: 0;
+	margin: auto;
+	color: white;
+	width: 100%;
+	height: 100px;
+	text-align: center;
+}
+.docker .shortLink {
+	width: 90px;
+	height: 90px;
+	cursor: pointer;
+	background: rgba(255,255,255,0);
+	display: inline-block;
+	border-radius: 15px;
+	padding: 12px;
+	margin: 0 12px;
+	text-decoration: none;
+	color: #fff;
+}
+.docker .shortLink:hover {
+	background: rgba(255,255,255,.2);
+}
+.docker .shortLink span {
+	line-height: 40px;
+}
+.docker .shortLink div img {
+	width: 30px;
+}
+.docker .shortLink div {
+	background: rgb(255,255,255);
+	padding: 5px;
+	width: 40px;
+	height: 40px;
+	display: inline-block;
+	border-radius: 5px;
+}
+	</style>
+</head>
+<body>
+	
+	<video autoplay muted loop class="bgv" id="bgv">
+		<source id="bgvs" src="bgv.mp4" type="video/mp4">
+	</video>
+	<audio loop id="bgs">
+		<source id="bgss" src="bgs.mp3" type="audio/mpeg">
+	</audio>
+	
+	<header>
+		<h1 class="welcome" id="tine"><span id="hrs">00</span><span id="timezdbldot">:</span><span id="mns">00</span></h1>
+		<p class="welcomeBack" id="timed"></p>
+		
+		<input type="text" placeholder="What is your main focus for today ?" class="serch" onkeyup="checkToValidSearch(event, this)" id="sreahc">
+		<a class="GoSearch" id="serchbtn" onclick="searchIn()">→</a> 
+	</header>
+	
+	<div class="docker">
+		<a class="shortLink" id="shortLinkOne" href="https://www.youtube.com">
+			<div>
+				<img src="youtube.png">
+			</div>
+			<span>YouTube</span>
+		</a>
+		<a class="shortLink" id="shortLinkTwo" href="https://mail.google.com">
+			<div>
+				<img src="gmail.png">
+			</div>
+			<span>Gmail</span>
+		</a>
+		<a class="shortLink" id="shortLinkThree" href="https://chat.openai.com">
+			<div>
+				<img src="chatgpt.png">
+			</div>
+			<span>ChatGPT</span>
+		</a>
+		<a class="shortLink" id="shortLinkFour" href="https://github.com">
+			<div>
+				<img src="github.png">
+			</div>
+			<span>GitHub</span>
+		</a>
+		<a class="shortLink" id="shortLinkFive" href="https://wokwi.com">
+			<div>
+				<img src="wokwi.png">
+			</div>
+			<span>Wokwi</span>
+		</a>
+		<a class="shortLink" id="shortLinkSix" href="https://lopaka.app">
+			<div>
+				<img src="lopaka.png">
+			</div>
+			<span>Lopaka</span>
+		</a>
+		<a class="shortLink" id="shortLinkSeven" href="https://twitter.com">
+			<div>
+				<img src="twitter.png">
+			</div>
+			<span>Twitter</span>
+		</a>
+		<a class="shortLink" id="shortLinkEight" href="https://discord.com">
+			<div>
+				<img src="discord.png">
+			</div>
+			<span>Discord</span>
+		</a>
+		<a class="shortLink" id="shortLinkNine" href="https://www.instagram.com">
+			<div>
+				<img src="instagram.png">
+			</div>
+			<span>Instagr...</span>
+		</a>
+	</div>
+	
+	<footer>
+		<p>"<span id="quotess"></span>"</p>
+	</footer>
+	
+	<script>
+
+function readSettings() {
+	const xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function () {
+		if (xhr.readyState === XMLHttpRequest.DONE) {
+			if (xhr.status === 200) {
+				const settings = parseSettings(xhr.responseText);
+				applySettings(settings);
+			} else {
+				console.error('Failed to load settings file.');
+			}
+		}
+	};
+	xhr.open('GET', 'dontDelete.txt', true);
+	xhr.send();
+}
+
+function parseSettings(text) {
+	const settings = {};
+	const lines = text.split('\n');
+	lines.forEach(line => {
+		const [key, value] = line.split('=');
+		settings[key.trim()] = value.trim();
+	});
+	return settings;
+}
+
+var numOfShortLinksApear;
+var shortLinks = document.getElementsByClassName("shortLink");
+var username = "";
+var searchEng = "bing";
+function applySettings(settings) {
+	username = settings.name;
+	searchEng = settings.searchengine;
+	numOfShortLinksApear = settings.shortlinksNum;
+	
+	document.getElementById("bgvs").src = settings.backgroundVid;
+	document.getElementById("bgss").src = settings.backgroundSnd;
+	
+	document.getElementById("shortLinkOne").querySelector("span").innerText = settings.shortlinkAt;
+	document.getElementById("shortLinkTwo").querySelector("span").innerText = settings.shortlinkMt;
+	document.getElementById("shortLinkThree").querySelector("span").innerText = settings.shortlinkBt;
+	document.getElementById("shortLinkFour").querySelector("span").innerText = settings.shortlinkCt;
+	document.getElementById("shortLinkFive").querySelector("span").innerText = settings.shortlinkDt;
+	document.getElementById("shortLinkSix").querySelector("span").innerText = settings.shortlinkEt;
+	document.getElementById("shortLinkSeven").querySelector("span").innerText = settings.shortlinkFt;
+	document.getElementById("shortLinkEight").querySelector("span").innerText = settings.shortlinkGt;
+	document.getElementById("shortLinkNine").querySelector("span").innerText = settings.shortlinkHt;
+	
+	document.getElementById("shortLinkOne").querySelector("img").src = settings.shortlinkAicon;
+	document.getElementById("shortLinkTwo").querySelector("img").src = settings.shortlinkMicon;
+	document.getElementById("shortLinkThree").querySelector("img").src = settings.shortlinkBicon;
+	document.getElementById("shortLinkFour").querySelector("img").src = settings.shortlinkCicon;
+	document.getElementById("shortLinkFive").querySelector("img").src = settings.shortlinkDicon;
+	document.getElementById("shortLinkSix").querySelector("img").src = settings.shortlinkEicon;
+	document.getElementById("shortLinkSeven").querySelector("img").src = settings.shortlinkFicon;
+	document.getElementById("shortLinkEight").querySelector("img").src = settings.shortlinkGicon;
+	document.getElementById("shortLinkNine").querySelector("img").src = settings.shortlinkHicon;
+	
+	document.getElementById("shortLinkOne").href = settings.shortlinkA;
+	document.getElementById("shortLinkTwo").href = settings.shortlinkM;
+	document.getElementById("shortLinkThree").href = settings.shortlinkB;
+	document.getElementById("shortLinkFour").href = settings.shortlinkC;
+	document.getElementById("shortLinkFive").href = settings.shortlinkD;
+	document.getElementById("shortLinkSix").href = settings.shortlinkE;
+	document.getElementById("shortLinkSeven").href = settings.shortlinkF;
+	document.getElementById("shortLinkEight").href = settings.shortlinkG;
+	document.getElementById("shortLinkNine").href = settings.shortlinkH;
+}
+
+
+
+setInterval(timeUpdate, 1000);
+
+var isFaat = false;
+function timeUpdate() {
+	var now = new Date();
+	var Year = now.getFullYear();
+	var Month = now.getMonth() + 1;
+	var Day = now.getDate();
+	var Hours = now.getHours();
+	var Minutes = now.getMinutes();
+	var Seconds = now.getSeconds();
+	
+	let indiM = document.getElementById("mns");
+	let indiH = document.getElementById("hrs");
+	let indiS = document.getElementById("timezdbldot");
+	
+	let welcomeBack = document.getElementById("timed");
+	
+	if (Hours < 10) {
+		indiH.innerHTML = "0" + Hours;
+	} else {
+		indiH.innerHTML = Hours;
+	}
+	
+	if (Minutes < 10) {
+		indiM.innerHTML = "0" + Minutes;
+	} else {
+		indiM.innerHTML = Minutes;
+	}
+	
+	if (Seconds % 2 == 0) {
+		indiS.style.opacity = "1";
+	} else {
+		indiS.style.opacity = "0";
+	}
+	
+	if (!isFaat) {
+		if (Hours > 14 && Hours < 20) {
+			welcomeBack.innerHTML = "Good afternoon, " + username +".";
+		}
+		if (Hours >= 11 && Hours <= 14) {
+			welcomeBack.innerHTML = "Good noon, " + username +".";
+		}
+		if (Hours >= 6 && Hours < 11) {
+			welcomeBack.innerHTML = "Good morning, " + username +".";
+		}
+		if (Hours >= 20 || Hours < 6) {
+			welcomeBack.innerHTML = "Good night, " + username +".";
+		}
+	} else {
+		welcomeBack.innerHTML = Year + "/" + Month + "/" + Day;
+	}
+	for (var i = 0; i < shortLinks.length; i++) {
+		if (i >= numOfShortLinksApear) {
+			shortLinks[i].style.display = "none";
+		}
+	}
+}
+if (!isFaat) { setTimeout(function () {isFaat = true;}, 5000); }
+
+window.onclick = function() {
+	document.getElementById("bgs").play();
+};
+
+
+var quotes = [
+  "The only way to do great work is to love what you do. - Steve Jobs",
+  "Life is what happens when you're busy making other plans. - John Lennon",
+  "but nobody came...",
+  "In three words I can sum up everything I've learned about life: it goes on. - Robert Frost",
+  "The future belongs to those who believe in the beauty of their dreams. - Eleanor Roosevelt",
+  "but nobody came...",
+  "Success is not final, failure is not fatal: It is the courage to continue that counts. - Winston Churchill",
+  "Do not wait to strike till the iron is hot, but make it hot by striking. - William Butler Yeats",
+  "The only limit to our realization of tomorrow will be our doubts of today. - Franklin D. Roosevelt",
+  "The best way to predict the future is to create it. - Peter Drucker",
+  "Success usually comes to those who are too busy to be looking for it. - Henry David Thoreau",
+  "but nobody came...",
+  "The only place where success comes before work is in the dictionary. - Vidal Sassoon",
+  "The purpose of our lives is to be happy. - Dalai Lama",
+  "Don't cry because it's over, smile because it happened. - Dr. Seuss",
+  "Life is really simple, but we insist on making it complicated. - Confucius",
+  "Believe you can and you're halfway there. - Theodore Roosevelt",
+  "In order to be irreplaceable, one must always be different. - Coco Chanel",
+  "The best revenge is massive success. - Frank Sinatra",
+  "but nobody came...",
+  "I find that the harder I work, the more luck I seem to have. - Thomas Jefferson",
+  "It does not matter how slowly you go as long as you do not stop. - Confucius",
+  "If you want to achieve greatness stop asking for permission. - Anonymous",
+  "I haven't failed. I've just found 10,000 ways that won't work. - Thomas Edison",
+  "Your time is limited, don't waste it living someone else's life. - Steve Jobs",
+  "You miss 100% of the shots you don't take. - Wayne Gretzky",
+  "The only place success comes before work is in the dictionary. - Vince Lombardi",
+  "Don't watch the clock; do what it does. Keep going. - Sam Levenson",
+  "Every strike brings me closer to the next home run. - Babe Ruth",
+  "You can't fall if you don't climb. But there's no joy in living your whole life on the ground. - Unknown",
+  "The road to success and the road to failure are almost exactly the same. - Colin R. Davis",
+  "Nothing in the world can take the place of Persistence. - Calvin Coolidge",
+  "Success is stumbling from failure to failure with no loss of enthusiasm. - Winston S. Churchill",
+  "You are never too old to set another goal or to dream a new dream. - C.S. Lewis",
+  "You do not rise to the level of your goals. You fall to the level of your systems. - James Clear",
+  "The only thing standing between you and your goal is the story you keep telling yourself as to why you can't achieve it. - Jordan Belfort",
+  "but nobody came...",
+  "Don't be pushed around by the fears in your mind. Be led by the dreams in your heart. - Roy T. Bennett",
+  "The only impossible journey is the one you never begin. - Tony Robbins",
+  "It always seems impossible until it’s done. - Nelson Mandela",
+  "Success is not in what you have, but who you are. - Bo Bennett",
+  "Do not wait for leaders; do it alone, person to person. - Mother Teresa",
+  "Your time is limited, don't waste it living someone else's life. - Steve Jobs",
+  "Don't be afraid to give up the good to go for the great. - John D. Rockefeller",
+  "The way to get started is to quit talking and begin doing. - Walt Disney",
+  "The only limit to our realization of tomorrow will be our doubts of today. - Franklin D. Roosevelt",
+  "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle. - Christian D. Larson",
+  "Success is not final, failure is not fatal: It is the courage to continue that counts. - Winston Churchill",
+  "Life is what happens when you're busy making other plans. - John Lennon",
+  "Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful. - Albert Schweitzer",
+  "but nobody came...",
+  "If you really look closely, most overnight successes took a long time. - Steve Jobs",
+  "Don't watch the clock; do what it does. Keep going. - Sam Levenson",
+  "The only way to do great work is to love what you do. - Steve Jobs",
+  "You don't have to be great to start, but you have to start to be great. - Zig Ziglar",
+  "The only place where success comes before work is in the dictionary. - Vidal Sassoon",
+  "The purpose of our lives is to be happy. - Dalai Lama",
+  "Don't be afraid to give up the good to go for the great. - John D. Rockefeller",
+  "The only way to achieve the impossible is to believe it is possible. - Charles Kingsleigh",
+  "The only limit to our realization of tomorrow will be our doubts of today. - Franklin D. Roosevelt",
+  "It does not matter how slowly you go as long as you do not stop. - Confucius",
+  "Don't cry because it's over, smile because it happened. - Dr. Seuss",
+  "but nobody came...",
+  "Life is really simple, but we insist on making it complicated. - Confucius",
+  "Believe you can and you're halfway there. - Theodore Roosevelt",
+  "In order to be irreplaceable, one must always be different. - Coco Chanel",
+  "The best revenge is massive success. - Frank Sinatra",
+  "I find that the harder I work, the more luck I seem to have. - Thomas Jefferson",
+  "It does not matter how slowly you go as long as you do not stop. - Confucius",
+  "If you want to achieve greatness stop asking for permission. - Anonymous",
+  "I haven't failed. I've just found 10,000 ways that won't work. - Thomas Edison",
+  "Your time is limited, don't waste it living someone else's life. - Steve Jobs",
+  "You miss 100% of the shots you don't take. - Wayne Gretzky",
+  "The only place success comes before work is in the dictionary. - Vince Lombardi",
+  "Don't watch the clock; do what it does. Keep going. - Sam Levenson",
+  "Every strike brings me closer to the next home run. - Babe Ruth",
+  "but nobody came...",
+  "You can't fall if you don't climb. But there's no joy in living your whole life on the ground. - Unknown",
+  "The road to success and the road to failure are almost exactly the same. - Colin R. Davis",
+  "Nothing in the world can take the place of Persistence. - Calvin Coolidge",
+  "Success is stumbling from failure to failure with no loss of enthusiasm. - Winston S. Churchill",
+  "You are never too old to set another goal or to dream a new dream. - C.S. Lewis",
+  "You do not rise to the level of your goals. You fall to the level of your systems. - James Clear",
+  "The only thing standing between you and your goal is the story you keep telling yourself as to why you can't achieve it. - Jordan Belfort",
+  "Don't be pushed around by the fears in your mind. Be led by the dreams in your heart. - Roy T. Bennett",
+  "The only impossible journey is the one you never begin. - Tony Robbins",
+  "It always seems impossible until it’s done. - Nelson Mandela",
+  "Success is not in what you have, but who you are. - Bo Bennett",
+  "Do not wait for leaders; do it alone, person to person. - Mother Teresa",
+  "Your time is limited, don't waste it living someone else's life. - Steve Jobs",
+  "Don't be afraid to give up the good to go for the great. - John D. Rockefeller",
+  "The way to get started is to quit talking and begin doing. - Walt Disney",
+  "The only limit to our realization of tomorrow will be our doubts of today. - Franklin D. Roosevelt",
+  "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle. - Christian D. Larson",
+  "but nobody came...",
+  "Success is not final, failure is not fatal: It is the courage to continue that counts. - Winston Churchill",
+  "Life is what happens when you're busy making other plans. - John Lennon",
+  "Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful. - Albert Schweitzer",
+  "but nobody came...",
+  "If you really look closely, most overnight successes took a long time. - Steve Jobs",
+  "Don't watch the clock; do what it does. Keep going. - Sam Levenson",
+  "The only way to do great work is to love what you do. - Steve Jobs",
+  "You don't have to be great to start, but you have to start to be great. - Zig Ziglar",
+  "The only place where success comes before work is in the dictionary. - Vidal Sassoon",
+  "The purpose of our lives is to be happy. - Dalai Lama",
+  "Don't be afraid to give up the good to go for the great. - John D. Rockefeller",
+  "The only way to achieve the impossible is to believe it is possible. - Charles Kingsleigh",
+  "The only limit to our realization of tomorrow will be our doubts of today. - Franklin D. Roosevelt",
+  "It does not matter how slowly you go as long as you do not stop. - Confucius",
+  "Don't cry because it's over, smile because it happened. - Dr. Seuss",
+  "Life is really simple, but we insist on making it complicated. - Confucius",
+  "Believe you can and you're halfway there. - Theodore Roosevelt",
+  "In order to be irreplaceable, one must always be different. - Coco Chanel",
+  "but nobody came...",
+  "The best revenge is massive success. - Frank Sinatra",
+  "I find that the harder I work, the more luck I seem to have. - Thomas Jefferson",
+  "It does not matter how slowly you go as long as you do not stop. - Confucius",
+  "If you want to achieve greatness stop asking for permission. - Anonymous",
+  "I haven't failed. I've just found 10,000 ways that won't work. - Thomas Edison",
+  "Your time is limited, don't waste it living someone else's life. - Steve Jobs",
+  "You miss 100% of the shots you don't take. - Wayne Gretzky",
+  "The only place success comes before work is in the dictionary. - Vince Lombardi",
+  "Don't watch the clock; do what it does. Keep going. - Sam Levenson",
+  "Every strike brings me closer to the next home run. - Babe Ruth",
+  "You can't fall if you don't climb. But there's no joy in living your whole life on the ground. - Unknown",
+  "The road to success and the road to failure are almost exactly the same. - Colin R. Davis",
+  "Nothing in the world can take the place of Persistence. - Calvin Coolidge",
+  "Success is stumbling from failure to failure with no loss of enthusiasm. - Winston S. Churchill",
+  "You are never too old to set another goal or to dream a new dream. - C.S. Lewis",
+  "You do not rise to the level of your goals. You fall to the level of your systems. - James Clear",
+  "The only thing standing between you and your goal is the story you keep telling yourself as to why you can't achieve it. - Jordan Belfort",
+  "but nobody came...",
+  "Don't be pushed around by the fears in your mind. Be led by the dreams in your heart. - Roy T. Bennett",
+  "The only impossible journey is the one you never begin. - Tony Robbins",
+  "It always seems impossible until it’s done. - Nelson Mandela",
+  "Success is not in what you have, but who you are. - Bo Bennett",
+  "Do not wait for leaders; do it alone, person to person. - Mother Teresa",
+  "Birds are descendants of dinosaurs.",
+  "The common house sparrow is one of the most widely distributed birds in the world.",
+  "Electronics is the branch of physics and technology concerned with the design and use of electronic devices.",
+  "Ohm's Law (V = I * R) describes the fundamental relationship between voltage, current, and resistance in electronic circuits.",
+  "Hummingbirds are the only birds that can fly backward.",
+  "In electronics, a resistor restricts the flow of electric current.",
+  "but nobody came...",
+  "Mathematics is often referred to as the language of the universe.",
+  "The peregrine falcon is the fastest bird and can reach speeds of over 240 miles per hour while diving.",
+  "Transistors are fundamental building blocks of electronic circuits, serving as amplifiers, switches, and signal modulators.",
+  "Pi (π) is an irrational number that represents the ratio of a circle's circumference to its diameter.",
+  "The lyrebird is known for its exceptional ability to mimic natural and artificial sounds.",
+  "Boolean algebra is the mathematical foundation of digital circuit design.",
+  "Eagles have powerful vision and can spot prey from incredible distances.",
+  "An integrated circuit (IC) is a compact arrangement of transistors, resistors, and other components on a single chip.",
+  "The Fibonacci sequence, where each number is the sum of the two preceding ones, is found in various aspects of nature, including the arrangement of leaves and petals in plants.",
+  "The albatross has the largest wingspan of any living bird, often exceeding 10 feet.",
+  "Ohm's Law is named after the German physicist Georg Simon Ohm.",
+  "Binary code is the language of computers, representing information using combinations of 0s and 1s.",
+  "The oldest known mathematical text is the Rhind Mathematical Papyrus, dating back to around 1650 BCE.",
+  "The kiwi bird is flightless and nocturnal, with a keen sense of smell.",
+  "In electronics, capacitance is the ability of a system to store an electric charge.",
+  "Pythagorean theorem states that, in a right-angled triangle, the square of the hypotenuse is equal to the sum of the squares of the other two sides.",
+  "but nobody came...",
+  "Crows are highly intelligent birds and have been observed using tools to solve problems.",
+  "The concept of zero is fundamental in mathematics and was introduced by Indian mathematicians.",
+  "A diode is a semiconductor device that allows current to flow in one direction only.",
+  "The mathematical constant 'e' is the base of natural logarithms and is approximately equal to 2.71828.",
+  "The colors of a peacock's feathers are not due to pigments but rather to microscopic platelets that reflect specific wavelengths of light.",
+  "but nobody came...",
+  "In Boolean algebra, the AND gate outputs a high signal only when both of its inputs are high.",
+  "The Mute Swan is one of the heaviest flying birds, with males weighing up to 26 pounds.",
+  "Kirchhoff's laws are fundamental principles in the analysis of electrical circuits.",
+  "The concept of infinity has intrigued mathematicians for centuries and is used in various mathematical fields.",
+  "Woodpeckers have specially adapted skulls that help prevent brain injury while drumming on trees.",
+  "Analog signals are continuous and can have an infinite number of values, while digital signals are discrete and have a finite set of values.",
+  "Chickens are descendants of the red junglefowl and were domesticated around 8,000 years ago.",
+  "but nobody came...",
+  "In calculus, the derivative represents the rate at which a quantity changes with respect to another variable.",
+  "The Archaeopteryx is considered one of the earliest birds and had both feathered wings and reptilian features.",
+  "In electronics, inductors store energy in a magnetic field when current flows through them.",
+  "The golden ratio, often denoted by the Greek letter phi (Φ), appears in various natural and artistic structures.",
+  "The Shoebill, native to tropical swamps in central tropical Africa, has a distinct shoe-shaped bill.",
+  "Graph theory is a branch of mathematics that studies the relationships between nodes and edges in a graph.",
+  "The concept of randomness is essential in both probability theory and information theory.",
+  "The common loon is known for its haunting, eerie calls that can be heard across lakes.",
+  "Kirchhoff's voltage law states that the sum of the electromotive forces (EMFs) and the product of the currents in any closed loop is zero.",
+  "The tarsier has the largest eyes, relative to body size, of any mammal and can rotate its head almost 180 degrees.",
+  "Cryptocurrency relies on complex mathematical algorithms and cryptographic techniques for security.",
+  "The concept of prime numbers, numbers divisible only by 1 and themselves, is fundamental in number theory.",
+  "Owls are known for their exceptional night vision and ability to rotate their heads up to 270 degrees.",
+  "Digital logic gates, such as AND, OR, and NOT gates, form the building blocks of digital circuits.",
+  "The mathematical field of topology studies the properties of space that are preserved under continuous deformations, such as stretching or bending.",
+  "The Lyre-tailed Kingbird is known for its long, extravagant tail feathers that resemble a lyre.",
+  "The concept of symmetry is fundamental in mathematics and has applications in various scientific fields.",
+  "The Kakapo, or night parrot, is a nocturnal and flightless bird native to New Zealand.",
+  "but nobody came...",
+  "Fourier analysis is a mathematical technique used to decompose complex signals into simpler components.",
+  "The American Robin is known for its cheerful song and is considered a harbinger of spring in North America.",
+  "Chaos theory studies the behavior of dynamic systems that are highly sensitive to initial conditions.",
+  "The African Grey Parrot is one of the most intelligent birds and can mimic human speech with remarkable accuracy.",
+  "Game theory is a branch of mathematics that studies strategic interactions between rational decision-makers.",
+  "The concept of vectors is widely used in physics and engineering to represent quantities with both magnitude and direction.",
+  "The Tufted Puffin is easily recognized by its distinctive tuft of yellow feathers on its head.",
+  "The term 'algorithm' originated from the name of the Persian mathematician Al-Khwarizmi.",
+  "The Arctic Tern has the longest migration of any bird, traveling from the Arctic to the Antarctic and back each year.",
+  "Group theory is a branch of mathematics that studies the symmetry of objects and the relationships between them.",
+  "The Kea, native to New Zealand, is known for its intelligence and curiosity.",
+  "The concept of eigenvalues and eigenvectors is fundamental in linear algebra and has applications in various fields.",
+  "The Superb Lyrebird is known for its elaborate tail feathers and mimicry of natural and artificial sounds.",
+  "The concept of limits is essential in calculus and is used to define derivatives and integrals.",
+  "The Northern Mockingbird is known for its ability to mimic the songs of other birds and even mechanical sounds.",
+  "Probability theory is widely used in various fields, including statistics, finance, and artificial intelligence.",
+  "The concept of tensors is fundamental in the study of multidimensional spaces and is applied in physics and engineering.",
+  "The Kakapo, also known as the owl parrot, is critically endangered, with only a small number remaining in the wild.",
+  "The concept of symmetry breaking is important in the study of phase transitions in physics.",
+  "The Eurasian Wren is one of the smallest birds in Europe but has a loud and melodious song.",
+  "The concept of entropy is fundamental in thermodynamics and information theory.",
+  "but nobody came...",
+  "The Great Horned Owl is one of the most widespread and adaptable owls in North America.",
+  "Game theory has applications in economics, biology, and political science, among other disciplines.",
+  "The Red-winged Blackbird is known for its distinctive red and yellow shoulder patches.",
+  "The concept of modular arithmetic is used in cryptography and coding theory.",
+  "The concept of chaos is used to describe deterministic systems that exhibit unpredictable and complex behavior.",
+  "The Wilson's Bird-of-Paradise is known for its vibrant colors and elaborate courtship displays.",
+  "Fibonacci numbers are found in the arrangement of leaves, pinecones, and the branching of trees.",
+  "The concept of fractals, self-replicating geometric patterns, is applied in computer graphics and natural phenomena.",
+  "The Black-capped Chickadee is a small bird with a distinctive black cap and cheerful song.",
+  "The concept of game trees is used in the analysis of decision-making in game theory.",
+  "but nobody came...",
+  "The concept of vector spaces is fundamental in linear algebra and functional analysis.",
+  "The Rainbow Lorikeet is known for its vibrant plumage and is native to Australia.",
+  "The concept of eigendecomposition is used to diagonalize matrices and simplify complex mathematical problems.",
+  "The concept of Bayesian probability is widely used in statistics and machine learning.",
+  "The concept of prime factorization is fundamental in number theory and cryptography.",
+  "The concept of Markov chains is used to model stochastic processes with memoryless properties.",
+  "The concept of symmetry is applied in crystallography to study the arrangement of atoms in crystals.",
+  "The concept of Ramsey theory studies the emergence of order in large, chaotic structures.",
+  "The concept of algebraic structures, such as groups and rings, is fundamental in abstract algebra.",
+  "The concept of fractal dimension is used to quantify the complexity of fractal patterns.",
+  "The concept of recurrence relations is used to define sequences based on previous terms.",
+  "The concept of Gödel's incompleteness theorems revolutionized the foundations of mathematics.",
+  "The concept of information entropy is used to measure the uncertainty or surprise in information theory.",
+  "The concept of transfinite numbers, introduced by Georg Cantor, extends the notion of infinity.",
+  "The concept of wave-particle duality is a fundamental aspect of quantum mechanics.",
+  "The concept of P versus NP is a major open problem in theoretical computer science.",
+  "The concept of topology optimization is used in engineering to design structures with optimal performance.",
+  "The concept of dynamic programming is a powerful optimization technique used in computer science.",
+  "The concept of hyperbolic geometry explores non-Euclidean geometries with negative curvature.",
+  "The concept of dual spaces is fundamental in functional analysis and linear algebra.",
+  "The concept of quantum entanglement is a phenomenon where particles become interconnected and share information instantaneously.",
+  "but nobody came...",
+  "The concept of Bayesian inference is used to update probabilities based on new evidence in statistics.",
+  "The concept of mathematical induction is a proof technique used to establish statements for all natural numbers.",
+  "The concept of perturbation theory is used to approximate solutions to complex mathematical problems.",
+  "The concept of homotopy theory studies continuous deformations of topological spaces.",
+  "The concept of Möbius transformations is a key idea in complex analysis and geometry.",
+  "The concept of elliptic curves plays a crucial role in number theory and cryptography.",
+  "The concept of the Riemann hypothesis is a famous unsolved problem in mathematics.",
+  "The concept of the traveling salesman problem is a classic optimization challenge in computer science.",
+  "The concept of entropy coding is used in data compression algorithms.",
+  "but nobody came...",
+  "The concept of spectral graph theory studies the properties of graphs in relation to eigenvalues.",
+  "The concept of algebraic geometry explores the relationship between algebra and geometry.",
+  "The concept of universal algebra studies common algebraic structures and operations.",
+  "The concept of perturbation theory is used in quantum mechanics to analyze approximate solutions.",
+  "The concept of algorithmic complexity theory studies the efficiency of algorithms.",
+  "The concept of K-theory is a branch of algebraic topology that classifies vector bundles.",
+  "The concept of simplicial complexes is used in algebraic topology to study geometric shapes.",
+  "The concept of elliptic curves plays a crucial role in modern cryptography.",
+  "The concept of sheaf theory is used to study topological spaces with algebraic structures.",
+  "The concept of algebraic number theory studies algebraic structures in number fields.",
+  "The concept of von Neumann architecture is a fundamental design for computer systems.",
+  "The concept of differential geometry studies the properties of curves and surfaces.",
+  "The concept of groupoids extends the notion of groups to include partial operations.",
+  "The concept of probabilistic algorithms incorporates randomness in computational processes.",
+  "The concept of singularity theory studies the properties of singular points in algebraic varieties.",
+  "The concept of complex analysis explores functions of complex numbers and their properties.",
+  "The concept of algebraic coding theory studies error-correcting codes for reliable data transmission.",
+  "but nobody came...",
+  "The concept of algebraic topology studies topological spaces using algebraic techniques.",
+  "The concept of projective geometry studies the properties of geometric figures under perspective.",
+  "The concept of Galois theory explores the symmetries of polynomial equations.",
+  "The concept of algebraic logic studies logical systems using algebraic structures.",
+  "The concept of algorithmic game theory combines algorithmic and economic principles.",
+  "but nobody came...",
+  "The concept of computational complexity theory classifies problems based on their inherent difficulty.",
+  "The concept of algebraic combinatorics studies combinatorial structures with algebraic methods.",
+  "The concept of numerical analysis studies algorithms for solving mathematical problems numerically.",
+  "The concept of algebraic graph theory studies the properties of graphs using algebraic structures.",
+  "The concept of algebraic coding theory studies error-correcting codes for reliable data transmission.",
+  "The concept of algebraic topology studies topological spaces using algebraic techniques.",
+  "The concept of projective geometry studies the properties of geometric figures under perspective.",
+  "The concept of Galois theory explores the symmetries of polynomial equations.",
+  "The concept of algebraic logic studies logical systems using algebraic structures.",
+  "The concept of algorithmic game theory combines algorithmic and economic principles.",
+  "The concept of computational complexity theory classifies problems based on their inherent difficulty.",
+  "The concept of algebraic combinatorics studies combinatorial structures with algebraic methods.",
+  "The concept of numerical analysis studies algorithms for solving mathematical problems numerically.",
+  "The concept of algebraic graph theory studies the properties of graphs using algebraic structures.",
+  "Arduino was created by a group of students at the Interaction Design Institute Ivrea (IDII) in Ivrea, Italy, in 2003.",
+  "The name 'Arduino' comes from a bar in Ivrea, where the founders used to meet.",
+  "The first Arduino board was released in 2005 and was named Arduino NG (Next Generation).",
+  "Arduino is an open-source electronics platform, which means its hardware and software specifications are open for anyone to use and modify.",
+  "but nobody came...",
+  "The Arduino IDE (Integrated Development Environment) is the software used to program Arduino boards.",
+  "Arduino boards are based on microcontrollers from Atmel, which is now part of Microchip Technology.",
+  "There are various types of Arduino boards, such as Arduino Uno, Arduino Mega, Arduino Nano, and more, each with different features and capabilities.",
+  "Arduino Uno is one of the most popular and widely used Arduino boards.",
+  "Arduino boards are designed to be beginner-friendly, making it easy for people with little to no programming or electronics experience to get started.",
+  "Arduino uses a simplified version of the C++ programming language for writing code.",
+  "The Arduino programming language is often referred to as 'Sketch', and the code files are called sketches.",
+  "Arduino boards can interact with the physical world using sensors, actuators, and other devices.",
+  "Arduino can be used for a wide range of applications, including robotics, home automation, wearable technology, and more.",
+  "Arduino shields are expansion boards that can be plugged into Arduino boards to add additional functionality, such as WiFi, Bluetooth, and motor control.",
+  "The Arduino community is active and vibrant, with forums and online resources for sharing knowledge and troubleshooting.",
+  "Arduino boards have both digital and analog pins, allowing them to interface with both digital and analog sensors and actuators.",
+  "Arduino supports a variety of communication protocols, including I2C, SPI, and UART.",
+  "Arduino can be programmed using a USB cable connected to a computer, making it easy to upload code and test projects.",
+  "Arduino boards have a bootloader, a small piece of software that allows the board to be programmed over USB without requiring additional hardware.",
+  "The 'blink' example, which makes an LED connected to an Arduino board blink, is often the first program beginners write.",
+  "Arduino can be used in conjunction with other platforms and technologies, such as Raspberry Pi and IoT (Internet of Things) devices.",
+  "but nobody came...",
+  "Arduino has a dedicated community of makers, hobbyists, and professionals who contribute to its growth and development.",
+  "The Arduino Software (IDE) is available for Windows, Mac, and Linux operating systems.",
+  "Arduino boards are widely used in educational settings to teach programming and electronics.",
+  "Arduino has inspired the creation of numerous compatible and derivative boards, expanding the ecosystem.",
+  "Arduino is not limited to hardware; it has its own official online platform called Arduino Create for cloud-based development.",
+  "Arduino boards are often used in prototyping and proof-of-concept projects before moving to a more specialized solution.",
+  "Arduino has a wide range of official and third-party libraries that simplify the process of interfacing with various sensors and devices.",
+  "but nobody came...",
+  "Arduino boards are known for their versatility, making them suitable for both simple and complex projects.",
+  "Arduino is a key player in the Maker Movement, encouraging people to create and innovate with technology.",
+  "Arduino has been used in various art installations and interactive exhibits, showcasing its creative applications.",
+  "Arduino has played a role in the popularization of physical computing, enabling users to interact with the digital world through physical inputs and outputs.",
+  "Space is completely silent because there is no air or medium for sound to travel through.",
+  "The largest volcano in the solar system is on Mars. It's called Olympus Mons and is about 13.6 miles (22 kilometers) high.",
+  "The Great Red Spot on Jupiter is a giant storm that has been raging for at least 350 years.",
+  "A day on Venus is longer than a year. Venus rotates on its axis so slowly that it takes about 243 Earth days to complete one rotation, but it only takes about 225 Earth days to orbit the Sun.",
+  "The Sun makes up about 99.86% of the mass of our entire solar system.",
+  "Astronauts' height can change in space due to the absence of gravity. They can grow a couple of inches taller while in space, but they return to their normal height upon returning to Earth.",
+  "The Hubble Space Telescope, launched in 1990, has provided stunning images and valuable data about the universe.",
+  "Saturn's density is so low that it would float in water if a body of water large enough could be found.",
+  "The Milky Way, our galaxy, is estimated to contain between 100 to 400 billion stars.",
+  "There are more possible iterations of a game of chess than there are atoms in the observable universe.",
+  "Black holes are regions in space where gravity is so strong that nothing, not even light, can escape their gravitational pull.",
+  "The Voyager 1 spacecraft, launched in 1977, has left our solar system and is now in interstellar space.",
+  "Neutron stars are incredibly dense. A sugar-cube-sized amount of neutron-star material would weigh about one billion tons on Earth.",
+  "Jupiter's magnetic field is so strong that it traps charged particles and produces intense radiation, making its magnetosphere the largest structure in the solar system.",
+  "The Moon is gradually moving away from Earth at a rate of about 1.5 inches (3.8 centimeters) per year.",
+  "Mercury is the smallest planet in our solar system, and it has the most extreme temperature variations, ranging from extremely hot to extremely cold.",
+  "The speed of light is approximately 186,282 miles per second (299,792 kilometers per second), and it can travel around the Earth about 7.5 times in one second.",
+  "Astronomers estimate that there are more than 100 billion galaxies in the observable universe.",
+  "The concept of dark matter and dark energy makes up about 95% of the total mass-energy content of the universe, but scientists don't fully understand what they are.",
+  "but nobody came...",
+  "The International Space Station (ISS) orbits the Earth at an average altitude of approximately 250 miles (400 kilometers).",
+  "Pluto was reclassified as a 'dwarf planet' in 2006 by the International Astronomical Union.",
+  "The Kuiper Belt is a region of the solar system beyond Neptune that is home to numerous small, icy bodies.",
+  "The distance between the Earth and the Sun is called an astronomical unit (AU), which is about 93 million miles (150 million kilometers).",
+  "but nobody came...",
+  "The concept of time dilation, as predicted by Einstein's theory of relativity, means that time can move at different rates in different gravitational fields.",
+  "Astronomers use the term 'light-year' to measure distance, representing the distance that light travels in one year, approximately 5.88 trillion miles (9.46 trillion kilometers).",
+  "The Crab Nebula, a remnant of a supernova explosion, was observed by Chinese astronomers in the year 1054 AD.",
+  "The Great Attractor is a gravitational anomaly in intergalactic space that influences the motion of galaxies in the Laniakea Supercluster.",
+  "The concept of a 'white hole' is a hypothetical region of spacetime that cannot be entered from the outside but matter and light can escape from it.",
+  "The concept of a 'wormhole' is a hypothetical tunnel-like structure that connects two separate points in spacetime, potentially allowing for faster-than-light travel.",
+  "The largest known star is UY Scuti, with a diameter that is over 1,700 times larger than that of the Sun.",
+  "Space is not completely empty; it contains a very low density of particles, such as atoms and photons, known as the interstellar medium.",
+  "The Cosmic Microwave Background (CMB) is radiation left over from the Big Bang, and its discovery provided strong evidence for the Big Bang theory.",
+  "The human heart is a funny thing – no matter how deep the despair, it's impossible to not be happy with a change in fortune.",
+  "People are created to be free; to make decisions independently, to live freely. But the reality is that that's nothing but a cruel, unattainable delusion.",
+  "I was neither living nor dead, and I knew nothing, save that I was abandoned. The deliverance of death was once a great comfort to me, but in death itself there is no peace. There is nothing but the piteous sobbing of people who have never known true bliss.",
+  "but nobody came...",
+  "There is nothing so pitiful as a young cynic because he has gone from knowing nothing to believing nothing.",
+  "Every time I see the sea, I feel a calming sense of security, as if visiting my ancestral home; I embark on a voyage of seeing.",
+  "It is such a mysterious place, the land of tears.",
+  "No matter how deep the night, it always turns to day, eventually.",
+  "One can't see beyond a wall if one doesn't look away from it.",
+  "The person who can devise the best method to deal with the detective agency will be me.",
+  "Even if we are deceived, let's love one another. That is the one and only way to live a peaceful life.",
+  "A person lives on by doing what they can, even if it's nothing special.",
+  "The concept of 'gravitational lensing' occurs when the gravitational field of a massive object, like a galaxy, bends the light from a more distant object, distorting or magnifying the image as observed from Earth.",
+  "Bungo Stray Dogs is a Japanese seinen manga series written by Kafka Asagiri and illustrated by Sango Harukawa.",
+  "The manga first began serialization in Kadokawa Shoten's Young Ace magazine in 2012.",
+  "The series is known for its unique blend of supernatural elements and literary references, with characters named after famous literary figures.",
+  "but nobody came...",
+  "Atsushi Nakajima, the protagonist, is named after the real-life Japanese author Atsushi Nakajima, who was one of the founders of the Japanese literary group Aozora Bunko.",
+  "Dazai Osamu, another prominent character, is named after the famous Japanese author Dazai Osamu, known for works like 'No Longer Human.'",
+  "The characters in Bungo Stray Dogs possess supernatural abilities called 'Gifts,' which are inspired by the authors' literary works.",
+  "The Armed Detective Agency, where much of the series is set, is an organization that solves crimes and deals with supernatural incidents.",
+  "The Port Mafia, a rival organization, serves as a source of conflict in the story and has its own set of gifted individuals.",
+  "Bungo Stray Dogs has been adapted into an anime series, and the animation studio Bones produced the first three seasons.",
+  "The manga has been well-received for its intriguing plot, unique characters, and clever integration of literary references.",
+  "The character design and illustrations by Sango Harukawa contribute to the distinctive visual style of the manga.",
+  "The series explores themes of identity, purpose, and the consequences of wielding supernatural powers.",
+  "Kafka Asagiri, the author of the manga, has a background in writing light novels, and Bungo Stray Dogs is his first serialized manga.",
+  "Bungo Stray Dogs has inspired various spin-off manga, novels, and even a stage play.",
+  "The title 'Bungo Stray Dogs' translates to 'Literary Stray Dogs,' reflecting the literary connections of the characters.",
+  "The manga has a good balance of action, humor, and character development, making it a compelling read for fans of the genre.",
+  "The series has been praised for its intricate plot twists and the way it weaves real-life literary references into the narrative.",
+  "but nobody came...",
+  "Bungo Stray Dogs has gained a dedicated fanbase both in Japan and internationally.",
+  "Endroll is a Japanese RPG game developed by the company Alice mare.",
+  "but nobody came...",
+  "The game features a unique and intriguing storyline that keeps players engaged.",
+  "Endroll incorporates puzzle-solving elements, adding a layer of complexity to the gameplay.",
+  "Players can explore diverse environments within the game world, each with its own challenges and secrets.",
+  "The character designs in Endroll are visually appealing and contribute to the game's overall charm.",
+  "The soundtrack of the game is composed of atmospheric and immersive music, enhancing the gaming experience.",
+  "Endroll has received positive reviews for its narrative depth and character development.",
+  "The game's title, 'Endroll,' suggests a connection to the end credits, possibly hinting at a post-game storyline.",
+  "Players can encounter various non-playable characters (NPCs) with their own stories and quests in Endroll.",
+  "The battle system in Endroll combines turn-based combat with strategic elements, keeping battles dynamic and engaging.",
+  "Endroll features multiple endings, adding replay value as players make choices that impact the outcome of the game.",
+  "The game incorporates elements of mystery and suspense, encouraging players to uncover the secrets of the game world.",
+  "Endroll has gained a dedicated fanbase, with enthusiasts discussing theories and lore related to the game.",
+  "The development team behind Endroll has a history of creating unique and memorable indie games.",
+  "The game's art style blends traditional pixel art with modern design, creating a visually appealing aesthetic.",
+  "Endroll includes Easter eggs and hidden references that attentive players can discover throughout their journey.",
+  "Players can find and collect various items in the game, each serving a specific purpose in the overall gameplay.",
+  "Endroll's world-building is intricate, with a rich history and mythology that players can explore.",
+  "The game's pacing is well-crafted, ensuring a balance between story-driven moments and gameplay.",
+  "Endroll has inspired fan creations, including fan art, fanfiction, and even mods that add new content to the game.",
+  "Life is like a bicycle, to keep your balance, you must keep moving.",
+  "The only constant in life is change.",
+  "Success is not final, failure is not fatal: It is the courage to continue that counts.",
+  "Life is 10% what happens to us and 90% how we react to it.",
+  "The purpose of our lives is to be happy.",
+  "Life is short, and it's up to you to make it sweet.",
+  "In three words I can sum up everything I've learned about life: it goes on.",
+  "Life is really simple, but we insist on making it complicated.",
+  "Life is either a daring adventure or nothing at all.",
+  "Don't count the days, make the days count.",
+  "Life is what happens when you're busy making other plans.",
+  "The best way to predict the future is to create it.",
+  "but nobody came...",
+  "Life is 10% what happens to us and 90% how we react to it.",
+  "Life is short, smile while you still have teeth.",
+  "The purpose of life is not to be happy. It is to be useful, to be honorable, to be compassionate, to have it make some difference that you have lived and lived well.",
+  "Artificial Intelligence (AI) is a branch of computer science that aims to create machines capable of intelligent behavior.",
+  "The term 'Artificial Intelligence' was first coined by John McCarthy in 1955.",
+  "AI can be categorized into narrow or weak AI and general or strong AI. Narrow AI is designed for a specific task, while general AI is more versatile and human-like.",
+  "Machine Learning (ML) is a subset of AI that focuses on creating systems that can learn and improve from experience.",
+  "Deep Learning is a type of machine learning that involves neural networks with many layers, also known as deep neural networks.",
+  "Natural Language Processing (NLP) is a field of AI that enables computers to understand, interpret, and generate human language.",
+  "AI has applications in various industries, including healthcare, finance, education, and entertainment.",
+  "The Turing Test, proposed by Alan Turing, is a test of a machine's ability to exhibit human-like intelligence.",
+  "Robotics is often integrated with AI to create intelligent robots capable of performing tasks autonomously.",
+  "AI systems can be categorized as rule-based systems, expert systems, and neural networks, among others.",
+  "Reinforcement Learning is a type of machine learning where an agent learns by interacting with its environment and receiving feedback in the form of rewards or penalties.",
+  "AI has been used to develop autonomous vehicles, including self-driving cars and drones.",
+  "Chatbots, powered by AI, are used for customer support, virtual assistance, and various other applications.",
+  "IBM's Deep Blue became the first computer to defeat a reigning world chess champion, Garry Kasparov, in 1997.",
+  "AI is used in fraud detection systems to analyze patterns and identify suspicious activities in financial transactions.",
+  "Speech recognition technology, a form of AI, is employed in virtual assistants like Siri and Google Assistant.",
+  "AI is instrumental in the development of recommendation systems used by platforms like Netflix and Amazon.",
+  "Quantum computing has the potential to significantly enhance AI capabilities by solving complex problems more efficiently.",
+  "AI-powered facial recognition technology is used for security purposes, as well as in social media for tagging photos.",
+  "Ethical considerations in AI include issues like bias in algorithms, job displacement, and privacy concerns.",
+  "AI algorithms can be categorized as supervised learning, unsupervised learning, and semi-supervised learning.",
+  "AI has been used in drug discovery, helping researchers identify potential candidates for new medications.",
+  "The development of AI has led to the creation of virtual assistants, such as Amazon's Alexa, Apple's Siri, and Google Assistant.",
+  "but nobody came...",
+  "AI applications in healthcare include diagnostics, personalized medicine, and predictive analytics.",
+  "AI is used in gaming for creating intelligent non-player characters (NPCs) and enhancing overall gaming experiences.",
+  "The field of AI ethics addresses the responsible and fair use of AI technologies to avoid negative consequences.",
+  "AI is applied in predictive maintenance, helping identify potential equipment failures before they occur.",
+  "AI-driven automation is transforming industries by streamlining processes and increasing efficiency.",
+  "Explainable AI (XAI) aims to make AI systems more transparent and understandable to humans.",
+  "AI is employed in weather forecasting, enabling more accurate predictions and early warning systems.",
+  "The AI winter refers to periods of reduced funding and interest in AI research due to unmet expectations.",
+  "AI has been used to create art, compose music, and generate creative content.",
+  "but nobody came...",
+  "AI-powered language translation tools facilitate communication across different languages.",
+  "AI is used in cybersecurity to detect and respond to potential threats in real-time.",
+  "AI is playing a crucial role in the development of smart cities, optimizing resource allocation and improving urban living.",
+  "AI has been utilized in agriculture for crop monitoring, yield prediction, and pest control.",
+  "AI is helping to optimize supply chain management by predicting demand and optimizing logistics.",
+  "Edge AI involves performing AI computations locally on devices rather than relying solely on centralized cloud servers.",
+  "AI algorithms have been used to analyze medical images for diagnosing conditions like cancer and identifying abnormalities.",
+  "AI is employed in the finance industry for algorithmic trading, fraud detection, and credit scoring.",
+  "AI technologies, such as computer vision, enable the development of augmented reality (AR) and virtual reality (VR) applications.",
+  "AI is used in sentiment analysis to analyze and understand the opinions and emotions expressed in text data.",
+  "AI is applied in energy management to optimize consumption, reduce waste, and improve sustainability.",
+  "AI is used in personalized marketing to analyze customer behavior and deliver targeted advertisements.",
+  "AI has been employed in the development of autonomous drones for various applications, including surveillance and delivery.",
+  "AI algorithms can be trained to play complex games, such as Go and poker, at a superhuman level.",
+  "AI is employed in HR processes for resume screening, employee engagement analysis, and talent acquisition.",
+  "AI-powered virtual reality therapy is being explored for treating various mental health conditions.",
+  "AI is used in quality control processes to detect defects in manufacturing and ensure product consistency.",
+  "AI is employed in the development of smart grids for efficient energy distribution and consumption.",
+  "AI is used in wildlife conservation for monitoring and protecting endangered species.",
+  "AI is applied in disaster response for analyzing data and coordinating emergency efforts.",
+  "AI-powered language models, like GPT-3, can generate human-like text based on given prompts.",
+  "AI is used in the analysis of social media data for trends, sentiment, and user behavior.",
+  "AI-driven predictive analytics is used in human resources for workforce planning and employee retention.",
+  "AI technologies, such as computer vision, enable the development of autonomous vehicles and drones.",
+  "AI is applied in logistics and transportation for route optimization, fleet management, and predictive maintenance.",
+  "AI is used in educational technology for personalized learning, adaptive assessments, and intelligent tutoring systems.",
+  "AI has been used in the development of virtual assistants for scheduling, reminders, and information retrieval.",
+  "AI is employed in natural disaster prediction and early warning systems.",
+  "AI-powered recommendation systems are used in e-commerce platforms to suggest products to users.",
+  "AI is applied in the optimization of energy consumption in buildings through smart building management systems.",
+  "AI is used in personalized medicine to analyze genetic data and tailor treatment plans to individual patients.",
+  "AI is employed in autonomous navigation systems for vehicles, drones, and robots.",
+  "AI is used in content moderation on social media platforms to identify and remove inappropriate content.",
+  "AI is applied in the analysis of satellite imagery for environmental monitoring and resource management.",
+  "AI-driven predictive maintenance is used in manufacturing to reduce downtime and extend the lifespan of equipment.",
+  "AI is employed in speech synthesis to create natural-sounding voices for virtual assistants and other applications.",
+  "AI is used in the optimization of advertising campaigns through targeted audience analysis.",
+  "AI technologies, such as computer vision, enable the development of autonomous vehicles and drones.",
+  "AI is applied in the development of personalized learning platforms for students.",
+  "AI is used in dynamic pricing strategies, adjusting prices based on real-time market conditions.",
+  "AI-powered recommendation systems are used in music streaming services to suggest songs to users.",
+  "Game development is a multidisciplinary field that involves design, programming, art, and sound.",
+  "The first video game ever created is widely considered to be 'Tennis for Two,' developed in 1958 by physicist William Higinbotham.",
+  "Pong, created by Atari in 1972, is often credited as the first commercially successful arcade video game.",
+  "Game developers often use game engines like Unity or Unreal Engine to streamline the development process.",
+  "The gaming industry is one of the fastest-growing entertainment industries globally.",
+  "Game developers frequently collaborate with artists to create visually appealing game assets.",
+  "Coding languages commonly used in game development include C++, C#, and Python.",
+  "Game developers often face challenges in optimizing games for different platforms and hardware.",
+  "The concept of 'Easter eggs' in games refers to hidden features or messages that players can discover.",
+  "Game developers use version control systems like Git to manage and track changes in their codebase.",
+  "Virtual Reality (VR) and Augmented Reality (AR) technologies are increasingly being integrated into games.",
+  "The process of creating a game involves pre-production, production, testing, and post-production phases.",
+  "Game developers must consider factors like user experience (UX) and user interface (UI) design.",
+  "The indie game development scene has grown significantly, allowing small teams or even individuals to create successful games.",
+  "Playable prototypes, also known as demos, are crucial for testing game mechanics and receiving feedback.",
+  "Game developers often attend events like the Game Developers Conference (GDC) to network and stay updated on industry trends.",
+  "In-game physics engines simulate realistic movements and interactions within the game world.",
+  "The use of procedural generation techniques allows developers to create vast and diverse game environments.",
+  "Esports, competitive gaming at a professional level, has become a major industry with large prize pools.",
+  "Game developers use shaders to control the visual effects and appearance of in-game objects.",
+  "Game developers consider player psychology and behavior when designing game mechanics.",
+  "Narrative designers focus on creating compelling stories and characters within games.",
+  "Game development involves constant learning as technologies and trends evolve.",
+  "Crowdfunding platforms like Kickstarter have been used to fund many successful game projects.",
+  "User-generated content and modding communities contribute to the longevity of many games.",
+  "The concept of 'sandbox' games allows players to explore and interact with the game world in an open-ended manner.",
+  "Game developers often face tight deadlines, especially when working on major releases.",
+  "Mobile game development has become a significant market, with millions of apps available on app stores.",
+  "Game developers may use artificial intelligence to create intelligent and challenging non-player characters (NPCs).",
+  "In-game economies, such as virtual currencies, play a crucial role in many online multiplayer games.",
+  "The development of 3D graphics has revolutionized the visual quality of games.",
+  "Music and sound effects contribute to the overall atmosphere and immersion in games.",
+  "Game developers frequently engage with player communities through forums, social media, and live streams.",
+  "Localization is essential for making games accessible to players from different regions and language backgrounds.",
+  "The concept of 'early access' allows players to participate in a game's development before its official release.",
+  "Game developers use analytics to track player behavior and make data-driven decisions.",
+  "Dynamic weather systems and day-night cycles add realism to many modern games.",
+  "Accessibility features, such as customizable controls and subtitles, are increasingly prioritized in game development.",
+  "The use of motion capture technology helps create realistic character animations in games.",
+  "Game development studios may have diverse teams comprising designers, programmers, artists, and writers.",
+  "The indie game 'Minecraft,' created by Markus Persson, became a massive success with its open-world sandbox concept.",
+  "Game developers may implement branching narratives, allowing players to make choices that affect the game's outcome.",
+  "Game jams, where developers create games within a short timeframe, are popular for fostering creativity.",
+  "Beta testing involves allowing a select group of players to test a game before its official release.",
+  "The concept of 'ragdoll physics' simulates realistic body movements and reactions in response to forces.",
+  "Games like 'Pac-Man' and 'Space Invaders' are iconic classics that have influenced the gaming industry.",
+  "In-game tutorials and guides help players learn the game mechanics and controls.",
+  "The process of optimizing games for different hardware configurations is known as 'porting.'",
+  "Game developers often draw inspiration from various sources, including books, movies, and real-world events.",
+  "The Unity Asset Store and Unreal Marketplace provide developers with ready-made assets and tools.",
+  "Game developers may use procedural audio techniques to generate dynamic soundscapes in real-time.",
+  "The use of artificial intelligence in games extends beyond NPCs, with AI-driven game design and storytelling.",
+  "In-game cutscenes are cinematic sequences that advance the game's narrative.",
+  "Game developers may collaborate with composers to create memorable and immersive soundtracks.",
+  "Game design documents outline the overall vision, mechanics, and features of a game.",
+  "Real-time strategy (RTS) games require strategic thinking and resource management from players.",
+  "Game developers may use iterative development processes, refining the game based on player feedback.",
+  "Games like 'Fortnite' and 'PlayerUnknown's Battlegrounds' popularized the battle royale genre.",
+  "The use of haptic feedback in controllers enhances the gaming experience by providing tactile sensations.",
+  "Game developers may implement cheat codes for testing purposes or to provide additional features to players.",
+  "The concept of 'permadeath' means that once a player character dies, they cannot be revived.",
+  "Game developers often face challenges in balancing difficulty to provide a satisfying gameplay experience.",
+  "Games with branching narratives may have multiple endings, encouraging replayability.",
+  "The concept of 'level design' involves creating engaging and challenging game environments.",
+  "Game developers may incorporate machine learning algorithms for dynamic and adaptive gameplay.",
+  "Games may feature procedurally generated quests and missions to add variety.",
+  "The use of ray tracing technology enhances the realism of lighting and reflections in modern games.",
+  "Game developers may use behavioral psychology principles to design addictive and engaging game mechanics.",
+  "Game development involves collaboration between creative and technical disciplines.",
+  "The concept of 'pixel art' is a nostalgic art style that harks back to the early days of gaming.",
+  "Game developers may experiment with unconventional control schemes, such as motion controls or virtual reality interfaces.",
+  "Games like 'The Legend of Zelda' and 'Final Fantasy' have become iconic franchises with a long-lasting impact.",
+  "Game developers may create detailed lore and world-building to enrich the game's narrative.",
+  "The 'uncanny valley' concept refers to the discomfort caused by humanoid characters that are almost, but not quite, realistic.",
+  "Game developers may use procedurally generated sound effects to enhance immersion.",
+  "Games often undergo patches and updates to fix bugs, add content, or improve performance.",
+  "The use of 2D and 3D art styles offers different visual experiences in games.",
+  "Game developers may collaborate with voice actors to bring characters to life through dialogue.",
+  "Games like 'The Sims' and 'SimCity' fall under the simulation genre, allowing players to create and control virtual worlds.",
+  "Game developers may use machine learning for player behavior prediction and adaptive difficulty adjustments.",
+  "The concept of 'emergent gameplay' refers to unexpected and unplanned interactions that arise during gameplay.",
+  "Games like 'Dark Souls' are known for their challenging difficulty, requiring skill and perseverance from players.",
+  "Game developers often participate in game development conferences to showcase their work and learn from others.",
+  "The use of photogrammetry allows developers to create realistic textures and models based on real-world photographs.",
+  "Games with open-world exploration often feature fast travel systems to reduce travel time.",
+  "Game developers may use procedurally generated dialogue to create dynamic and responsive conversations.",
+  "Games with multiplayer components often require dedicated server infrastructure for smooth online experiences.",
+  "The concept of 'permadeath' means that once a player character dies, they cannot be revived.",
+  "Game developers often face challenges in balancing difficulty to provide a satisfying gameplay experience.",
+  "Games with branching narratives may have multiple endings, encouraging replayability.",
+  "The concept of 'level design' involves creating engaging and challenging game environments.",
+  "Game developers may incorporate machine learning algorithms for dynamic and adaptive gameplay.",
+  "Games may feature procedurally generated quests and missions to add variety.",
+  "The use of ray tracing technology enhances the realism of lighting and reflections in modern games.",
+  "Game developers may use behavioral psychology principles to design addictive and engaging game mechanics.",
+  "Game development involves collaboration between creative and technical disciplines.",
+  "The concept of 'pixel art' is a nostalgic art style that harks back to the early days of gaming.",
+  "Game developers may experiment with unconventional control schemes, such as motion controls or virtual reality interfaces.",
+  "Games like 'The Legend of Zelda' and 'Final Fantasy' have become iconic franchises with a long-lasting impact.",
+  "Game developers may create detailed lore and world-building to enrich the game's narrative.",
+  "The 'uncanny valley' concept refers to the discomfort caused by humanoid characters that are almost, but not quite, realistic.",
+  "Game developers may use procedurally generated sound effects to enhance immersion.",
+  "Games often undergo patches and updates to fix bugs, add content, or improve performance.",
+  "The use of 2D and 3D art styles offers different visual experiences in games.",
+  "Game developers may collaborate with voice actors to bring characters to life through dialogue.",
+  "Games like 'The Sims' and 'SimCity' fall under the simulation genre, allowing players to create and control virtual worlds.",
+  "Game developers may use machine learning for player behavior prediction and adaptive difficulty adjustments.",
+  "The concept of 'emergent gameplay' refers to unexpected and unplanned interactions that arise during gameplay.",
+  "Games like 'Dark Souls' are known for their challenging difficulty, requiring skill and perseverance from players.",
+  "Game developers often participate in game development conferences to showcase their work and learn from others.",
+  "The use of photogrammetry allows developers to create realistic textures and models based on real-world photographs.",
+  "Games with open-world exploration often feature fast travel systems to reduce travel time.",
+  "Game developers may use procedurally generated dialogue to create dynamic and responsive conversations.",
+  "Games with multiplayer components often require dedicated server infrastructure for smooth online experiences.",
+  "Web development refers to the process of building and maintaining websites.",
+  "HTML (Hypertext Markup Language) is the standard markup language used to create web pages.",
+  "CSS (Cascading Style Sheets) is used for styling and formatting web pages.",
+  "JavaScript is a programming language that enables interactive web pages.",
+  "Responsive web design ensures that a website looks good on all devices and screen sizes.",
+  "Node.js allows server-side JavaScript execution.",
+  "JSON (JavaScript Object Notation) is a lightweight data interchange format.",
+  "API (Application Programming Interface) allows different software systems to communicate.",
+  "Git is a version control system widely used in web development.",
+  "GitHub is a popular platform for hosting and collaborating on Git repositories.",
+  "REST (Representational State Transfer) is an architectural style for web services.",
+  "AJAX (Asynchronous JavaScript and XML) allows data to be updated asynchronously.",
+  "SPA (Single Page Application) loads a single HTML page and updates content dynamically as the user interacts.",
+  "Cross-site scripting (XSS) is a security vulnerability in web applications.",
+  "HTTPS (Hypertext Transfer Protocol Secure) encrypts data transmitted between the browser and the server.",
+  "SEO (Search Engine Optimization) is crucial for improving a website's visibility in search engine results.",
+  "Web accessibility ensures that websites are usable by people with disabilities.",
+  "Bootstrap is a popular front-end framework for building responsive websites.",
+  "Sass (Syntactically Awesome Stylesheets) is a preprocessor scripting language for CSS.",
+  "React is a JavaScript library for building user interfaces, developed by Facebook.",
+  "Angular is a TypeScript-based open-source web application framework.",
+  "Vue.js is a progressive JavaScript framework for building user interfaces.",
+  "WebAssembly (Wasm) is a binary instruction format that enables near-native performance in web browsers.",
+  "PWA (Progressive Web App) is a type of application software delivered through the web.",
+  "Websockets enable bidirectional communication between a client and a server over a single, long-lived connection.",
+  "GraphQL is a query language for APIs and a runtime for executing those queries with your existing data.",
+  "Docker is a platform for developing, shipping, and running applications in containers.",
+  "Continuous Integration (CI) automates the process of integrating code changes from multiple contributors.",
+  "Web components are reusable components that encapsulate a piece of the user interface.",
+  "WebAssembly (Wasm) allows running high-performance code written in languages like C and C++ in web browsers.",
+  "Responsive images ensure optimal loading and display of images on different devices.",
+  "Web security practices include input validation, secure coding, and regular security audits.",
+  "Content Management Systems (CMS) like WordPress and Drupal facilitate the creation and management of digital content.",
+  "Progressive Enhancement is a web design strategy that starts with a core functionality that works across all devices.",
+  "The Document Object Model (DOM) represents the structure of a document as a tree of objects.",
+  "Web hosting services provide the infrastructure for storing and serving website files.",
+  "WebSockets enable real-time communication between clients and servers.",
+  "HTTP/2 is a major revision of the HTTP network protocol, designed to improve speed and efficiency.",
+  "Microservices architecture structures an application as a collection of loosely coupled services.",
+  "WebAssembly enables running code written in multiple languages on the web at near-native speed.",
+  "Version control systems like Git help track changes in code and collaborate on projects.",
+  "The SOLID principles (Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion) are design principles for writing maintainable and scalable software.",
+  "Linting tools like ESLint and JSHint help identify and fix issues in the JavaScript code.",
+  "Unit testing is a software testing technique where individual units or components of a software are tested.",
+  "Web analytics tools like Google Analytics provide insights into website traffic and user behavior.",
+  "Serverless architecture allows running applications without managing servers.",
+  "WebAssembly (Wasm) is designed to be a portable target for the compilation of high-level languages like C, C++, and Rust.",
+  "WebRTC enables real-time communication between browsers for video chat and file sharing.",
+  "WebGL is a JavaScript API for rendering interactive 2D and 3D graphics within any compatible web browser.",
+  "GraphQL simplifies the communication between the client and the server by allowing clients to request only the data they need.",
+  "JWT (JSON Web Token) is a compact, URL-safe means of representing claims to be transferred between two parties.",
+  "Responsive typography adjusts the size and spacing of text to enhance the readability and aesthetics on different devices.",
+  "Google's Material Design is a design language that combines classic principles of successful design with innovation.",
+  "Web scraping is the automated extraction of data from websites.",
+  "Web performance optimization techniques include minimizing HTTP requests, optimizing images, and leveraging browser caching.",
+  "Lighthouse is an open-source, automated tool for improving the quality of web pages.",
+  "WebAssembly enables running code written in multiple languages on the web at near-native speed.",
+  "Webhooks are automated messages sent from one system to another when a specific event occurs.",
+  "The Web Content Accessibility Guidelines (WCAG) provide recommendations for making web content more accessible.",
+  "The Model-View-Controller (MVC) architecture separates the concerns of an application into three main components.",
+  "The Agile methodology emphasizes iterative development and collaboration between cross-functional teams.",
+  "Web security practices include using HTTPS, validating input, and protecting against common vulnerabilities like SQL injection.",
+  "The Twelve-Factor App methodology provides best practices for building modern, scalable, and maintainable web applications.",
+  "Code is like humor. When you have to explain it, it’s bad. - Cory House",
+  "The best error message is the one that never shows up. - Thomas Fuchs",
+  "Every great developer you know got there by solving problems they were unqualified to solve until they actually did it. - Patrick McKenzie",
+  "The computer was born to solve problems that did not exist before. - Bill Gates",
+  "Programming isn't about what you know; it's about what you can figure out. - Chris Pine",
+  "It's not a bug. It's an undocumented feature!",
+  "Java is to JavaScript what car is to carpet. - Chris Heilmann",
+  "There are only two kinds of languages: the ones people complain about and the ones nobody uses. - Bjarne Stroustrup",
+  "A good programmer is someone who always looks both ways before crossing a one-way street. - Doug Linder",
+  "Simplicity is the soul of efficiency. - Austin Freeman",
+  "Coding is not just code, that is a live thing to serve everyone! - Ming Song",
+  "The best way to predict the future is to invent it. - Alan Kay",
+  "The function of good software is to make the complex appear to be simple. - Grady Booch",
+  "The most disastrous thing that you can ever learn is your first programming language. - Alan Kay",
+  "The only way to learn a new programming language is by writing programs in it. - Dennis Ritchie",
+  "Code without tests is bad code. It doesn't matter how well written it is; it doesn't matter how pretty or object-oriented or well-encapsulated it is. - Robert C. Martin",
+  "Programming is the art of telling another human what one wants the computer to do. - Donald Knuth",
+  "The first 90% of the code accounts for the first 90% of the development time. The remaining 10% of the code accounts for the other 90% of the development time. - Tom Cargill",
+  "The key to performance is elegance, not battalions of special cases. - Jon Bentley",
+  "Every great developer you know got there by solving problems they were unqualified to solve until they actually did it. - Patrick McKenzie",
+  "Code is like humor. When you have to explain it, it’s bad. - Cory House",
+  "The best error message is the one that never shows up. - Thomas Fuchs",
+  "Programming isn't about what you know; it's about what you can figure out. - Chris Pine",
+  "The computer was born to solve problems that did not exist before. - Bill Gates",
+  "It's not a bug. It's an undocumented feature!",
+  "Java is to JavaScript what car is to carpet. - Chris Heilmann",
+  "There are only two kinds of languages: the ones people complain about and the ones nobody uses. - Bjarne Stroustrup",
+  "A good programmer is someone who always looks both ways before crossing a one-way street. - Doug Linder",
+  "Simplicity is the soul of efficiency. - Austin Freeman",
+  "Coding is not just code, that is a live thing to serve everyone! - Ming Song",
+  "The best way to predict the future is to invent it. - Alan Kay",
+  "The function of good software is to make the complex appear to be simple. - Grady Booch",
+  "The most disastrous thing that you can ever learn is your first programming language. - Alan Kay",
+  "The only way to learn a new programming language is by writing programs in it. - Dennis Ritchie",
+  "Code without tests is bad code. It doesn't matter how well written it is; it doesn't matter how pretty or object-oriented or well-encapsulated it is. - Robert C. Martin",
+  "Programming is the art of telling another human what one wants the computer to do. - Donald Knuth",
+  "The first 90% of the code accounts for the first 90% of the development time. The remaining 10% of the code accounts for the other 90% of the development time. - Tom Cargill",
+  "The key to performance is elegance, not battalions of special cases. - Jon Bentley",
+  "Any fool can write code that a computer can understand. Good programmers write code that humans can understand. - Martin Fowler",
+  "If debugging is the process of removing software bugs, then programming must be the process of putting them in. - Edsger Dijkstra",
+  "LED stands for Light Emitting Diode.",
+  "LEDs are energy-efficient and have a longer lifespan compared to traditional light sources.",
+  "LCD stands for Liquid Crystal Display.",
+  "LED screens use LEDs to provide backlighting for LCD displays.",
+  "OLED (Organic Light Emitting Diode) is another type of display technology that doesn't require backlighting.",
+  "LEDs can emit light in different colors without the need for filters.",
+  "LCDs use liquid crystals to modulate light and produce images.",
+  "LED TVs are technically a type of LCD TV with LED backlighting.",
+  "LEDs are commonly used in various electronic devices, including traffic lights and indicator lights.",
+  "LED displays are often used in outdoor advertising due to their brightness and clarity.",
+  "Plasma displays were once popular for large TVs but have been largely replaced by LED/LCD technology.",
+  "LED monitors are popular for computer setups due to their sharp image quality.",
+  "IPS (In-Plane Switching) is a type of LCD technology known for better color accuracy and wider viewing angles.",
+  "QLED (Quantum-dot LED) is a display technology that enhances color and brightness in LED TVs.",
+  "LEDs are solid-state devices, meaning they have no moving parts and are more durable.",
+  "LCD panels are commonly used in smartphones, tablets, and laptops.",
+  "LEDs are commonly used in decorative lighting applications.",
+  "MicroLED is an emerging display technology with tiny LED modules for improved resolution and color accuracy.",
+  "LED-backlit keyboards are popular in laptops for better visibility in low-light conditions.",
+  "LED displays are more energy-efficient compared to traditional display technologies.",
+  "HDR (High Dynamic Range) is a technology that enhances the contrast and color range in LED TVs.",
+  "LED technology continues to evolve, with advancements such as Mini LED and Dual LED for improved performance.",
+  "LCDs and LEDs are integral components of modern digital signage systems.",
+  "LEDs play a crucial role in the development of smart lighting systems for homes and offices.",
+  "LCDs are used in a variety of medical equipment, such as ultrasound machines and patient monitors.",
+  "LEDs are used in the automotive industry for headlights, brake lights, and interior lighting.",
+  "but nobody came...",
+  "Ori and the Blind Forest was developed by Moon Studios and published by Microsoft Studios.",
+  "The game was released in 2015 and gained widespread acclaim for its beautiful art, emotional storytelling, and challenging gameplay.",
+  "Ori and the Will of the Wisps is the sequel to Ori and the Blind Forest, released in 2020.",
+  "The sequel builds upon the success of the first game, introducing new mechanics, characters, and a vast, interconnected world.",
+  "Both games feature a stunning hand-drawn art style that brings the magical forest of Nibel to life.",
+  "The music for both games, composed by Gareth Coker, received high praise for its emotional impact and atmospheric quality.",
+  "Ori, the main character, is a guardian spirit who embarks on a journey to save the forest and its inhabitants.",
+  "The narrative of both games is deeply emotional, exploring themes of friendship, sacrifice, and the cycle of life.",
+  "The ability system in the games allows Ori to gain new powers and abilities as the story progresses.",
+  "Naru, a motherly character in the first game, plays a crucial role in Ori's early development and sets the emotional tone for the game.",
+  "The sequel introduces new characters like Ku, a baby owl, and Moki, small creatures that inhabit the world of Niwen.",
+  "The game's challenging platforming elements require precise control and timing, adding to the sense of accomplishment when overcoming obstacles.",
+  "Both Ori games have received numerous awards for their art, music, and gameplay design.",
+  "The Blind Forest won the BAFTA Games Award for Artistic Achievement in 2016.",
+  "The sequel, Will of the Wisps, received praise for its improved combat mechanics and expanded world design.",
+  "Moon Studios, the developer, is known for its unique approach to game development, with team members spread across the globe working remotely.",
+  "The games draw inspiration from classic platformers like Metroid and Castlevania.",
+  "The dynamic lighting in the games enhances the visual experience, creating a magical and immersive atmosphere.",
+  "Will of the Wisps introduces Spirit Shards, which are customizable abilities that allow players to tailor Ori's playstyle to their preferences.",
+  "Both games feature emotional, wordless storytelling that relies on visual and musical cues to convey the narrative.",
+  "The Ori series has gained a dedicated fanbase, with many players expressing their love for the games on social media platforms.",
+  "Despite being challenging, the games are accessible to a wide audience, thanks to their engaging story and captivating world.",
+  "but nobody came..."
+];
+
+function generateRandomQuote() {
+  var randomIndex = Math.floor(Math.random() * quotes.length);
+  return quotes[randomIndex];
+}
+
+window.onload = function() {
+	readSettings();
+	var randomQuote = generateRandomQuote();
+	var quotess = document.getElementById("quotess");
+	quotess.innerHTML = randomQuote;
+	if (randomQuote === "but nobody came...") {
+		console.error("but nobody came...");
+		console.error("but nobody came..");
+		console.error("ᵇᵘᵗ ᶰᵒᵇᵒᵈʸ ᶜᵃᵐᵉ⋅");
+		console.log("-_-");
+		console.error("^🔽^");
+		document.getElementById("bgs").src = "err.mp3";
+		document.getElementById("sreahc").style.color = "red";
+		document.getElementById("sreahc").style.borderBottomColor = "red";
+		document.getElementById("sreahc").placeholder = "Who you want to find for this time?";
+		document.getElementById("serchbtn").style.color = "red";
+		document.getElementById("tine").style.color = "red";
+		document.getElementById("timed").style.color = "red";
+		isFaat = true;
+		document.getElementById("timed").innerHTML = "Miss";
+		setTimeout(function() {document.getElementById("bgv").src = "came.mp4";setTimeout(function() {document.getElementById("bgv").src = "but.mp4";setTimeout(function(){document.getElementById("bgv").src = "nobody.mp4";setTimeout(function(){document.getElementById("bgv").src = "came.mp4";setTimeout(function(){document.getElementById("bgv").src = "nobody.mp4";setTimeout(function(){window.location.reload();},500);},1000);},800);},500);},2000);},2000);
+	}
+	
+};
+
+function checkToValidSearch(event, input) {
+	const button = document.getElementById("serchbtn");
+
+	if (input.value.trim().length > 0) {
+		button.style.display = "inline-block";
+		setTimeout(function() { button.style.opacity = 1; }, 10);
+	} else {
+		button.style.opacity = 0;
+		setTimeout(function() { button.style.display = "none"; }, 500);
+	}
+	if (event.key === "Enter") {
+        searchIn();
+    }
+}
+function searchIn() {
+	const input = document.getElementById("sreahc");
+	var newValue = input.value.replace(/\s/g, "+");
+/*
+	if (input.value.startsWith("www") || input.value.startsWith("http") || input.value.endsWith(".com")) {
+		window.open(input.value, "_self");
+	} else {*/
+		window.open("https://www." + searchEng + ".com/search?q=" + newValue, "_self");
+	//}
+}
+	</script>
+</body>
+</html>

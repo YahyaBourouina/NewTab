@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Settings Page</title>
+  <hta:application id="settingsApp" applicationname="SettingsApp" version="1.0"/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input, select {
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 8px 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Settings</h1>
+
+  <label for="username">Username:</label>
+  <input type="text" id="username" placeholder="Enter your username">
+
+  <label for="theme">Select Theme:</label>
+  <select id="theme">
+    <option value="light">Light</option>
+    <option value="dark">Dark</option>
+  </select>
+
+  <label for="notification">Enable Notifications:</label>
+  <input type="checkbox" id="notification">
+
+  <button onclick="saveSettings()">Save Settings</button>
+
+  <script>
+    function saveSettings() {
+      var username = document.getElementById('username').value;
+      var theme = document.getElementById('theme').value;
+      var notification = document.getElementById('notification').checked;
+
+      // You can perform further actions with the settings, such as saving to a database or localStorage.
+      console.log('Username:', username);
+      console.log('Theme:', theme);
+      console.log('Notifications Enabled:', notification);
+
+      alert('Settings saved successfully!');
+    }
+  </script>
+
+</body>
+</html>

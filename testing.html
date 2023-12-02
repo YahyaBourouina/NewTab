@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings Reader</title>
+</head>
+<body>
+  <h1 id="userName">User</h1>
+
+  <a id="shortlinkA" target="_blank">Shortlink A</a>
+  <img id="shortlinkAIcon" alt="Icon A">
+
+  <a id="shortlinkB" target="_blank">Shortlink B</a>
+  <img id="shortlinkBIcon" alt="Icon B">
+
+  <!-- Add other shortlinks as needed -->
+
+  <video id="backgroundVideo" width="320" height="240" controls>
+    Your browser does not support the video tag.
+  </video>
+
+  <audio id="backgroundSound" controls>
+    Your browser does not support the audio tag.
+  </audio>
+
+  <input type="file" id="fileInput" accept=".txt">
+
+  <script>
+    document.getElementById('fileInput').addEventListener('change', handleFile);
+
+    function handleFile(event) {
+      const file = event.target.files[0];
+
+      if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+          const fileContent = e.target.result;
+          applySettings(fileContent);
+          applyShortlinks(fileContent);
+        };
+
+        reader.readAsText(file);
+      }
+    }
+
+    function parseSettings(fileContent) {
+      const settings = {};
+      const lines = fileContent.split('\n');
+
+      lines.forEach((line) => {
+        const [key, value] = line.split('=');
+        if (key && value) {
+          settings[key.trim()] = value.trim();
+        }
+      });
+
+      return settings;
+    }
+
+    function applySettings(fileContent) {
+      const settings = parseSettings(fileContent);
+
+      // Example: Apply user name
+      document.getElementById('userName').textContent = settings.name;
+
+      // Example: Apply background video
+      document.getElementById('backgroundVideo').src = settings.backgroundVid;
+
+      // Example: Apply background sound
+      document.getElementById('backgroundSound').src = settings.backgroundSnd;
+    }
+
+    function applyShortlinks(fileContent) {
+      const settings = parseSettings(fileContent);
+
+      const shortlinkMapping = {
+        A: { url: settings.shortlinkA, icon: settings.shortlinkAicon },
+        B: { url: settings.shortlinkB, icon: settings.shortlinkBicon },
+        // Add other shortlinks as needed...
+      };
+
+      Object.keys(shortlinkMapping).forEach((key) => {
+        const linkElement = document.getElementById(`shortlink${key}`);
+        const iconElement = document.getElementById(`shortlink${key}Icon`);
+
+        if (linkElement && iconElement) {
+          linkElement.href = shortlinkMapping[key].url;
+          iconElement.src = shortlinkMapping[key].icon;
+        }
+      });
+    }
+  </script>
+</body>
+</html>
